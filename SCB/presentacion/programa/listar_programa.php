@@ -1,10 +1,5 @@
 <?php
 
-/*
-* To change this template, choose Tools | Templates
-* and open the template in the editor.
-*/
-
 require_once ('../../bbl/sql_programa.php');
 require_once ('../../dao/programa.php');
 
@@ -22,7 +17,7 @@ $view->disableLayout = false; //se usa o no el layout, si no lo usa imprime dire
 switch ($action) {
     case 'index':
 
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
+        $view->ListaPrograma = $msql_docente->ListarDocentes();
         $view->contentTemplate = "../../presentacion/programa/programaGrid.php";
         break;
 
@@ -57,17 +52,17 @@ switch ($action) {
 
 
         $msql_docente->SaveDocente($objeto);
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
+        $view->ListaPrograma = $msql_docente->ListarDocentes();
         $view->contentTemplate = "../../presentacion/programa/programaGrid.php";
         break;
 
     case 'Eliminar_Dependencia':
         $view->disableLayout = true;
-        $idd = intval($_POST['id']);
+        $idd = intval($_POST['id_programa']);
 
         $msql_docente->DeleteDocente($idd);
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
-        $view->contentTemplate = "../../presentacion/dependencia/dependenciaGrid.php";
+        $view->ListaPrograma = $msql_docente->ListarDocentes();
+        $view->contentTemplate = "../../presentacion/programa/programaGrid.php";
         break;
 
     case 'ModificarDocente':
@@ -75,34 +70,42 @@ switch ($action) {
         $id = intval($_POST['id']);
 
         $msql_docente->SelectDocente($id);
-        $view->label = 'Modificar Dependencia';
-        $view->ListaDocentes = $msql_docente->SelectDocente($id);
+        $view->label = 'Modificar Programa';
+        $view->ListaPrograma = $msql_docente->SelectDocente($id);
         $view->contentTemplate = "../../presentacion/programa/FRM_mod_programa.php";
         break;
 
     case 'ActualizarDocente':
         $view->disableLayout = true;
-        $id = intval($_POST['id']);
-        $nombre = strval($_POST['nombre']);
-		$ubicacion = strval($_POST['ubicacion']);
-		$idusuario = strval($_POST['responsable']);
+		$id_programa = intval ($_POST['id_programa']);
+		$name = strval($_POST['nombre']);
+        $descripcion = strval($_POST['descripcion']);
+		$caracteristicacs = strval($_POST['caracteristicacs']);
+		$categoria = strval($_POST['categoria']);
+		$estatus = strval($_POST['estatus']);
+        $monto = strval($_POST['monto']);
+		$convocatoria = strval($_POST['convocatoria']);
 
-        $objeto = new dependencia();
-        $objeto->setid($id);
-        $objeto->setidusuario($idusuario);
-        $objeto->setnombre($nombre);
-		$objeto->setresponsable($ubicacion);
-
+        $objeto = new programa();
+		$objeto->setid_programa($id_programa);
+        $objeto->setnombre_programa($name);
+        $objeto->setdescripcion($descripcion);
+		$objeto->setcaracteristicas($caracteristicacs);
+		$objeto->setcategoria($categoria);
+		$objeto->setestatus($estatus);
+        $objeto->setmonto($monto);
+		$objeto->setconvocatoria($convocatoria);
+				
         $msql_docente->UpdateDocente($objeto);
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
-        $view->contentTemplate = "../../presentacion/dependencia/dependenciaGrid.php";
+        $view->ListaPrograma = $msql_docente->ListarDocentes();
+        $view->contentTemplate = "../../presentacion/programa/programaGrid.php";
         break;
 
     case 'Buscar_d':
         $view->disableLayout = true;
      	$name = strval($_POST['nombre']);
         		
-        $view->ListaDocentes = $msql_docente->ListarDocentesBuscados($name);
+        $view->ListaPrograma = $msql_docente->ListarDocentesBuscados($name);
 		$view->contentTemplate = "../../presentacion/programa/programaGrid.php";
         break;
 

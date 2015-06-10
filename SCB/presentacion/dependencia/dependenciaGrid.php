@@ -61,7 +61,7 @@
         <tbody>
             <?php
             $i = 1;
-			 foreach ($view->ListaDocentes as $mDocente):            
+			 foreach ($view->ListaDependencia as $mDocente):            
             ?>               
                 <tr>
                     <td><?php echo $mDocente->getid(); ?></td>

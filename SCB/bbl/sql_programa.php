@@ -91,7 +91,7 @@ class sql_programa {
         $Conexion = conectar_bd();
         $Conexion->conectarse();
 
-        $list_docentes = $Conexion->ejecutar("select id_programa, nombre_programa, descripcion, caracteristicas, categoria, monto, estatus, convocatoria from programa where nombre_programa like '%" . $id . "%';");
+        $list_docentes = $Conexion->ejecutar("select id_programa, nombre_programa, descripcion, caracteristicas, categoria, monto, estatus, convocatoria from programa where id_programa = ".$id.";");
         
         while ($renglon = mysql_fetch_array($list_docentes)){
             $objeto = new programa();
@@ -128,7 +128,7 @@ class sql_programa {
         $Conexion = conectar_bd();
         $Conexion->conectarse();
 
-        $Conexion->ejecutar("DELETE FROM dependencia where id_dependencia = " . $id . ";");
+        $Conexion->ejecutar("DELETE FROM programa where id_programa = " . $id . ";");
 
         $Conexion->desconectarse();
     }
@@ -138,7 +138,9 @@ class sql_programa {
 
         $Conexion = conectar_bd();
         $Conexion->conectarse();
-		$Conexion->ejecutar("UPDATE dependencia set nombre= '".$objeto->getnombre()."', ubicacion = '".$objeto->getresponsable()."', responsable ='".$objeto->getidusuario()."' where id_dependencia = " .$objeto->getid().";");
+		$Conexion->ejecutar("UPDATE programa set nombre_programa='" . $objeto->getnombre_programa() . "', descripcion='".$objeto->getdescripcion()."', caracteristicas='" . $objeto->getcaracteristicas() . "', categoria ='" . $objeto->getcategoria() . "', monto= '" . $objeto->getmonto() . "', estatus= '" . $objeto->getestatus() . "', convocatoria= '" . $objeto->getconvocatoria() . "' where id_programa= " .$objeto->getid_programa().";");
+		
+		//nombre= '".$objeto->getnombre()."', ubicacion = '".$objeto->getresponsable()."', responsable ='".$objeto->getidusuario()."' where id_dependencia = " .$objeto->getid().";");
 		$Conexion->desconectarse();
     }
 

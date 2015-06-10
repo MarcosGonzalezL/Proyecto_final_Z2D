@@ -1,10 +1,5 @@
 <?php
 
-/*
-* To change this template, choose Tools | Templates
-* and open the template in the editor.
-*/
-
 require_once ('../../bbl/sql_dependencia.php');
 require_once ('../../dao/dependencia.php');
 
@@ -21,8 +16,8 @@ $view->disableLayout = false; //se usa o no el layout, si no lo usa imprime dire
 
 switch ($action) {
     case 'index':
-
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
+//ListaDocentes -> ListaDependencia
+        $view->ListaDependencia = $msql_docente->ListarDocentes();
         $view->contentTemplate = "../../presentacion/dependencia/dependenciaGrid.php";
         break;
 
@@ -49,7 +44,7 @@ switch ($action) {
 
 
         $msql_docente->SaveDocente($objeto);
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
+        $view->ListaDependencia = $msql_docente->ListarDocentes();
         $view->contentTemplate = "../../presentacion/dependencia/dependenciaGrid.php";
         break;
 
@@ -58,7 +53,7 @@ switch ($action) {
         $idd = intval($_POST['id']);
 
         $msql_docente->DeleteDocente($idd);
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
+        $view->ListaDependencia = $msql_docente->ListarDocentes();
         $view->contentTemplate = "../../presentacion/dependencia/dependenciaGrid.php";
         break;
 
@@ -68,7 +63,7 @@ switch ($action) {
 
         $msql_docente->SelectDocente($id);
         $view->label = 'Modificar Dependencia';
-        $view->ListaDocentes = $msql_docente->SelectDocente($id);
+        $view->ListaDependencia = $msql_docente->SelectDocente($id);
         $view->contentTemplate = "../../presentacion/dependencia/FRM_mod_dependencia.php";
         break;
 
@@ -86,7 +81,7 @@ switch ($action) {
 		$objeto->setresponsable($ubicacion);
 
         $msql_docente->UpdateDocente($objeto);
-        $view->ListaDocentes = $msql_docente->ListarDocentes();
+        $view->ListaDependencia = $msql_docente->ListarDocentes();
         $view->contentTemplate = "../../presentacion/dependencia/dependenciaGrid.php";
         break;
 
@@ -98,7 +93,7 @@ switch ($action) {
 		$resp = strval($_POST['responsable']);
 		
 		
-        $view->ListaDocentes = $msql_docente->ListarDocentesBuscados($nombre);
+        $view->ListaDependencia = $msql_docente->ListarDocentesBuscados($nombre);
 		$view->contentTemplate = "../../presentacion/dependencia/dependenciaGrid.php";
         break;
 

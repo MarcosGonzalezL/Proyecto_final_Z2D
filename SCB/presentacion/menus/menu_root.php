@@ -21,7 +21,7 @@ $menu=Menu_administrador();
 
 Inicio_estilo_CSS($titulo, $menu);
 
-echo "<h3>Bienvenido ".$_COOKIE['nombre_usuario']."</h3><br>";
+echo "<h3>Bienvenido MARCOS GONZALEZ</h3><br>";
 
 	Fin_estilo_CSS();
 ?>

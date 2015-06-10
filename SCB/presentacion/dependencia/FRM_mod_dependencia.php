@@ -3,7 +3,7 @@
     <div class="bar">
         <table>
             <?php
-            foreach ($view->ListaDocentes as $mDocente):
+            foreach ($view->ListaDependencia as $mDocente):
                 ?>
 				<tr>
                     <td>

@@ -39,8 +39,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 	// Sección Programa
    //Guarda encargado desde el formulario
      $('#savePro').live('click',function(){
-        alert("sientra");
-        var nombre = document.frm_dependencia.nombre.value;
+         var nombre = document.frm_dependencia.nombre.value;
 		var descripcion = document.frm_dependencia.desc.value;
 	    var caracteristicacs = document.frm_dependencia.caracte.value;
 		var estatus = document.frm_dependencia.estatus.value;
@@ -55,7 +54,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 		params.monto = monto;
 		params.categoria = categoria;
 		params.convocatoria = convocatoria; 
-        var entrar = confirm("¿Se guardara el encargado:  "+nombre+" "+ descripcion +" " +caracteristicacs+" "+estatus+" "+monto+" "+categoria+" "+convocatoria+"?");	
+        var entrar = confirm("¿Se guardara el programa:  "+nombre+" "+ descripcion +" " +caracteristicacs+" "+estatus+" "+monto+" "+categoria+" "+convocatoria+"?");	
 		  if (entrar == true){            
             params.action="Save_Dependencia";
             $('#content').load('listar_programa.php', params,function(){
@@ -77,7 +76,6 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         var id=$(this).attr('data-idd');
         var nombre = $(this).attr('data-nombre');
         var entrar = confirm("¿Modificar programa: "+id+" "+"?");
-        alert("aquientro");
         if(entrar == true){
             params = {};
             params.id = id;
@@ -933,6 +931,23 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
                 })
         }
     })
+	  	//función para eliminar un programa
+   $('.select_prog').live('click',function(){
+        //obtengo el id que guardamos en data-id
+        var id_programa=$(this).attr('data-idd'); 
+        var nombre_programa = $(this).attr('data-nombre');      
+		
+        var entrar = confirm("¿Eliminar Programa: "+id_programa+" "+nombre_programa+"?");
+		
+		
+        if (entrar == true){			  
+            params={};
+            params.id_programa=id_programa;		
+            params.action="Eliminar_Dependencia";
+            $('#content').load('listar_programa.php', params,function(){		
+                })
+        }
+    })
     //fucnción para modifcar un docente
     $('.select_md').live('click', function(){
         var id=$(this).attr('data-idd');
@@ -964,8 +979,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 	    params.nombre = nombre;
 		params.responsable = responsable;
 		params.ubicacion = ubicacion;
-		//alert("Valores" +id+ "   " + nombre +"    "+responsable+" "+ubicacion);
-        var entrar = confirm("Se modificá la dependencia: "+id+".");
+		var entrar = confirm("Se modificá la dependencia: "+id+".");
          if(entrar == true){
                 params.action="ActualizarDocente";
                 $('#content').load('listar_dependencia.php', params, function(){
@@ -976,7 +990,35 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
          }   
     })
     
-  
+   $('#updateH').live('click', function(){
+         var id_programa = document.frm_mod_dependencia.id.value;
+		 var nombre = document.frm_mod_dependencia.nombre.value;
+		var descripcion = document.frm_mod_dependencia.desc.value;
+	    var caracteristicacs = document.frm_mod_dependencia.caracte.value;
+		var estatus = document.frm_mod_dependencia.estatus.value;
+		var monto = document.frm_mod_dependencia.monto.value;
+		var categoria = document.frm_mod_dependencia.cat.value;
+		var convocatoria = document.frm_mod_dependencia.conv.value;
+	  {
+       params={};
+	    params.id_programa = id_programa;
+        params.nombre = nombre;
+		params.descripcion = descripcion;
+		params.caracteristicacs = caracteristicacs; 
+		params.estatus = estatus;
+		params.monto = monto;
+		params.categoria = categoria;
+		params.convocatoria = convocatoria; 
+		 var entrar = confirm("Se modificá el programa: "+nombre+".");
+         if(entrar == true){
+                params.action="ActualizarDocente";
+                $('#content').load('listar_programa.php', params, function(){
+                    $('#block').show();
+                    $('#popupbox').show();
+                })
+            }
+         }   
+    })
 
     // boton cancelar, uso live en lugar de bind para que tome cualquier boton
     // nuevo que pueda aparecer

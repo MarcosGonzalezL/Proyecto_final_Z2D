@@ -3,7 +3,7 @@
     <div class="bar">
         <table>
             <?php
-            foreach ($view->ListaDocentes as $mDocente):
+            foreach ($view->ListaPrograma as $mDocente):
                 ?>
 				<tr>
                     <td>
@@ -14,7 +14,7 @@
                <tr>
                 <td>
                     Nombre del programa:
-                      <input type="text" id="nombre" name="nombre" size="30"value="<?php echo $mDocente->getid_programa(); ?>"/>
+                      <input type="text" id="nombre" name="nombre" size="30"value="<?php echo $mDocente->getnombre_programa(); ?>"/>
 				</td>
             </tr>  	
 			<tr>
@@ -54,7 +54,7 @@
         </table>
     </div>
     <div class="buttonsBar">
-        <a id="updateD" class="button" href="javascript:void(0);">Guardar cambios</a>
+        <a id="updateH" class="button" href="javascript:void(0);">Guardar cambios</a>
         <a id="cancel" class="button" href="javascript:void(0);">Regresar</a>
     </div>
 </form>

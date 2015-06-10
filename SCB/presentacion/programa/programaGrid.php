@@ -87,7 +87,7 @@
         <tbody>
             <?php
             $i = 1;
-			 foreach ($view->ListaDocentes as $mDocente):            
+			 foreach ($view->ListaPrograma as $mDocente):            
             ?>               
                 <tr>
                     <td><?php echo $mDocente->getid_programa(); ?></td>
@@ -100,7 +100,7 @@
 					   <td><?php echo $mDocente->getconvocatoria(); ?></td>
 					   
                     <td><a class="select_modpr" href="javascript:void(0);" data-idd="<?php echo $mDocente->getid_programa(); ?>" data-nombre="<?php echo $mDocente->getnombre_programa();?>">Modificar</a></td>
-                    <td><a class="select_ed" href="javascript:void(0);" data-idd="<?php echo $mDocente->getid_programa(); ?>" data-nombre="<?php echo $mDocente->getnombre_programa();?>">Eliminar</a></td>
+                    <td><a class="select_prog" href="javascript:void(0);" data-idd="<?php echo $mDocente->getid_programa(); ?>" data-nombre="<?php echo $mDocente->getnombre_programa();?>">Eliminar</a></td>
                 </tr>
                 <?php
                 $i++;
